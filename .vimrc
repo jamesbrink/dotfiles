@@ -105,6 +105,7 @@ NeoBundle 'cakebaker/scss-syntax.vim'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'fatih/vim-go'
+NeoBundle 'burnettk/vim-angular'
 
 " Required:
 call neobundle#end()
