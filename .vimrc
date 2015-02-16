@@ -47,20 +47,8 @@ set noswapfile
 " Enable syntax highlighting
 syntax enable
 
-"colorscheme base16-paraiso
+"let base16colorspace=256
 set background=dark
-
-" Set extra options when running in GUI mode
-if has("gui_running")
-	set guioptions-=T
-	set guioptions+=e
-	set t_Co=256
-	set guitablabel=%M\ %t
-
-    if has("gui_macvim")
-        set guifont=Source\ Code\ Pro\ for\ Powerline\:h11
-    endif
-endif
 
 " Set utf8 as standard encoding and en_US as the standard language
 set encoding=utf8
@@ -106,7 +94,8 @@ NeoBundle 'scrooloose/syntastic'
 NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'fatih/vim-go'
 NeoBundle 'burnettk/vim-angular'
-
+NeoBundle 'Valloric/YouCompleteMe'
+NeoBundle 'chriskempson/base16-vim'
 " Required:
 call neobundle#end()
 
@@ -279,26 +268,13 @@ set viminfo^=%
 " Status line
 """"""""""""""""""""""""""""""
 " Always show the status line
-set laststatus=2
+"set laststatus=2
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Editing mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Remap VIM 0 to first non-blank character
 map 0 ^
-
-" Move a line of text using ALT+[jk] or Comamnd+[jk] on mac
-nmap <M-j> mz:m+<cr>`z
-nmap <M-k> mz:m-2<cr>`z
-vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
-vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
-
-if has("mac") || has("macunix")
-  nmap <D-j> <M-j>
-  nmap <D-k> <M-k>
-  vmap <D-j> <M-j>
-  vmap <D-k> <M-k>
-endif
 
 " Delete trailing white space on save
 func! DeleteTrailingWS()
@@ -388,23 +364,13 @@ function! <SID>BufcloseCloseIt()
    endif
 endfunction
 
-function! TabCompletion()
-  if col('.')>1 && strpart( getline('.'), col('.')-2, 3 ) =~ '^\w'
-    return "\<C-N>"
-  else
-    return "\<Tab>"
-  endif
-endfunction
-
-:inoremap <Tab> <C-R>=TabCompletion()<CR>
-:set dictionary="/usr/local/bin/dict"
+:set dictionary="/usr/share/dict/words"
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Autogroups
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 augroup configgroup
     autocmd!
-    autocmd CursorMovedI * call TabCompletion()
     autocmd VimEnter * highlight clear SignColumn
     autocmd FileType java setlocal noexpandtab
     autocmd FileType java setlocal list
@@ -436,11 +402,19 @@ augroup END
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Syntastic
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+let g:syntastic_check_on_wq = 1
+
+set nocompatible
+nnoremap <silent> <buffer> <leader>i :JavaImport<cr>
+nnoremap <silent> <buffer> <leader>d :JavaDocSearch -x declarations<cr>
+nnoremap <silent> <buffer> <cr> :JavaSearchContext<cr>
+let g:EclimCompletionMethod = 'omnifunc'
+
+colorscheme base16-default
