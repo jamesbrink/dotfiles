@@ -47,7 +47,6 @@ set noswapfile
 " Enable syntax highlighting
 syntax enable
 
-"let base16colorspace=256   <--- This has been redefined at end of profile for now
 set background=dark
 
 " Set utf8 as standard encoding and en_US as the standard language
@@ -416,5 +415,3 @@ nnoremap <silent> <buffer> <leader>i :JavaImport<cr>
 nnoremap <silent> <buffer> <leader>d :JavaDocSearch -x declarations<cr>
 nnoremap <silent> <buffer> <cr> :JavaSearchContext<cr>
 let g:EclimCompletionMethod = 'omnifunc'
-
-colorscheme base16-default
