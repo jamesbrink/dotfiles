@@ -1,7 +1,8 @@
 PATH=~/local/bin:$PATH
 PATH=~/local/jruby/current/bin:$PATH
 PATH=~/local/opt/java/current/bin:$PATH
-RUBY_HOME=~/local/ruby/v2.2.2
+RUBY_BASE=~/local/ruby
+RUBY_HOME=~/local/ruby/current
 GOROOT=~/local/go
 GOPATH=~/Projects
 INTELLIJ_HOME=~/local/opt/IntelliJ14
@@ -18,10 +19,38 @@ if [ ! -d "$BASE_16_PATH" ]; then
 fi
 
 PATH="$BASE_16_PATH:$GOROOT/bin:$INTELLIJ_HOME/bin:$ECLIPSE_HOME:$RUBY_HOME/bin:$EC2_HOME/bin:$PATH"
-export PATH JAVA_HOME JDK_HOME ECLIPSE_HOME INTELLIJ_HOME GOROOT GOPATH EC2_HOME RUBY_HOME
+export PATH JAVA_HOME JDK_HOME ECLIPSE_HOME INTELLIJ_HOME GOROOT GOPATH EC2_HOME RUBY_BASE RUBY_HOME
 
 # Execute Base 16 Shell
 BASE16_SHELL="$BASE_16_PATH/base16-google.dark.sh"
 [[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
+
+# Custom functions and aliases
+
+switch_ruby () {
+  if [ -z "$1" ]; then
+    echo "Usage switch_ruby [version number]";
+  else
+    version=$1
+    if [ -d $RUBY_BASE ]; then
+      mkdir -p $RUBY_BASE;
+    fi
+    if [ -d "$RUBY_BASE/v$version" ]; then
+      if [ -e "$RUBY_BASE/current" ]; then
+        rm "$RUBY_BASE/current"
+      fi
+      ln -s `echo "$RUBY_BASE/v$version $RUBY_BASE/current"`;
+      echo "Switched to $version | `ruby -v`";
+    else
+      echo "Ruby $version is not installed"
+      # Todo offer install option
+    fi
+  fi
+}
+
+
+
+
+
 
 echo "Profile Loaded"
