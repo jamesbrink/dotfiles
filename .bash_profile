@@ -38,7 +38,12 @@ BASE16_SHELL="$BASE_16_PATH/base16-google.dark.sh"
 
 if [[ $OSTYPE == darwin* ]]; then 
   # Run docker commands as if they were native on OSX
-  alias docker="ssh docker \"docker $1\" `echo \"${*:2}\"`"
+  # TODO clean this up
+  function docker()
+  {
+    REMOTE_PWD=$(pwd|sed -e "s#/Users/james#/home/james#")
+    ssh docker "if cd ${REMOTE_PWD}; [ "$?" -ne "0" ]; then cd ~;fi && docker $1" `echo "${*:2}"`
+  }
 fi
 
 switch_ruby () {
