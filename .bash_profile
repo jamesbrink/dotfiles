@@ -44,6 +44,11 @@ if [[ $OSTYPE == darwin* ]]; then
     REMOTE_PWD=$(pwd|sed -e "s#/Users/james#/home/james#")
     ssh docker "if cd ${REMOTE_PWD}; [ "$?" -ne "0" ]; then cd ~;fi && docker $1" `echo "${*:2}"`
   }
+  function docker-compose()
+  {
+    REMOTE_PWD=$(pwd|sed -e "s#/Users/james#/home/james#")
+    ssh docker "if cd ${REMOTE_PWD}; [ "$?" -ne "0" ]; then cd ~;fi && docker-compose $1" `echo "${*:2}"`
+  }
 fi
 
 switch_ruby () {
