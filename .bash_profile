@@ -49,21 +49,7 @@ if [[ $OSTYPE == darwin* ]]; then
     REMOTE_PWD=$(pwd|sed -e "s#/Users/james#/home/james#")
     ssh docker "if cd ${REMOTE_PWD}; [ "$?" -ne "0" ]; then cd ~;fi && docker-compose $1" `echo "${*:2}"`
   }
-else
-  function docker()
-  {
-    if [ "$1" == "purge" ]; then
-      echo "Purging all stopped containers"
-      /usr/bin/env docker ps -a|cut -d " " -f 1|grep -v CONTAINER|grep -v Up|xargs docker rm
-      echo "Purging all Images not in use"
-      /usr/bin/env docker images |awk '{print $3'}|grep -v IMAGE|xargs docker rmi
-    else
-      /usr/bin/env docker $@
-    fi
-  }
 fi
-
-
 
 switch_ruby () {
   if [ -z "$1" ]; then
@@ -86,5 +72,14 @@ switch_ruby () {
   fi
 }
 
+function install_NeoBundle(){
+if [ ! -e ~/.vim/bundle/neobundle.vim/bin/neoinstall ]; then
+  echo "Installing NeoBundle"
+  curl https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.sh | sh
+fi
+}
+
+
+install_NeoBundle
 
 echo "Profile Loaded"
