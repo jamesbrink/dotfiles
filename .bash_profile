@@ -12,6 +12,8 @@ ECLIPSE_HOME=~/local/opt/eclipse
 BASE_16_PATH=~/.config/base16-shell
 EC2_HOME=~/local/ec2
 
+# Per user hostaliases
+export HOSTALIASES=~/.hosts
 
 if [[ $OSTYPE == darwin* ]]; then 
   # on OSX enable color coding on files, 
@@ -36,19 +38,8 @@ BASE16_SHELL="$BASE_16_PATH/base16-google.dark.sh"
 
 # Custom functions and aliases
 
-if [[ $OSTYPE == darwin* ]]; then 
-  # Run docker commands as if they were native on OSX
-  # TODO clean this up
-  function docker()
-  {
-    REMOTE_PWD=$(pwd|sed -e "s#/Users/james#/home/james#")
-    ssh docker "if cd ${REMOTE_PWD}; [ "$?" -ne "0" ]; then cd ~;fi && docker $1" `echo "${*:2}"`
-  }
-  function docker-compose()
-  {
-    REMOTE_PWD=$(pwd|sed -e "s#/Users/james#/home/james#")
-    ssh docker "if cd ${REMOTE_PWD}; [ "$?" -ne "0" ]; then cd ~;fi && docker-compose $1" `echo "${*:2}"`
-  }
+if [[ $OSTYPE == darwin* ]]; then
+  $(boot2docker shellinit) 
 fi
 
 switch_ruby () {
