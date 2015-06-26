@@ -38,7 +38,7 @@ BASE16_SHELL="$BASE_16_PATH/base16-google.dark.sh"
 
 # Custom functions and aliases
 
-if [[ $OSTYPE == darwin* ]]; then
+if [[ $OSTYPE == darwin*  && `boot2docker status` == "running" ]]; then
   $(boot2docker shellinit) 
 fi
 
