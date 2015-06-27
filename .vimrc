@@ -95,6 +95,10 @@ NeoBundle 'fatih/vim-go'
 NeoBundle 'burnettk/vim-angular'
 NeoBundle 'Valloric/YouCompleteMe'
 NeoBundle 'chriskempson/base16-vim'
+NeoBundle 'klen/python-mode'
+NeoBundle 'vim-scripts/django.vim'
+NeoBundle 'elixir-lang/vim-elixir'
+" NeoBundle 'jmcantrell/vim-virtualenv'
 " Required:
 call neobundle#end()
 
