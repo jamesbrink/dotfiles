@@ -1,0 +1,7 @@
+[push]
+	default = simple
+[user]
+	name = James Brink
+	email = brink.james@gmail.com
+[core]
+	autocrlf = input
