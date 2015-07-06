@@ -409,10 +409,13 @@ augroup END
 "set statusline+=%{SyntasticStatuslineFlag()}
 "set statusline+=%*
 
+
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 1
+let g:syntastic_loc_list_height=2
+
 
 set nocompatible
 nnoremap <silent> <buffer> <leader>i :JavaImport<cr>
