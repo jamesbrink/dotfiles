@@ -5,7 +5,7 @@ PATH=~/local/opt/java/current/bin:$PATH
 RUBY_BASE=~/local/ruby
 RUBY_HOME=~/local/ruby/current
 GOROOT=~/local/go
-GOPATH=~/projects/go-projects/
+GOPATH=~/projects/go-projects
 INTELLIJ_HOME=~/local/opt/IntelliJ14
 JAVA_HOME=~/local/opt/java/current
 JDK_HOME=~/local/opt/java/current
@@ -40,7 +40,7 @@ BASE16_SHELL="$BASE_16_PATH/base16-google.dark.sh"
 
 # Custom functions and aliases
 
-if [[ $OSTYPE == darwin*  && `boot2docker status` == "running" ]]; then
+if [[ $OSTYPE == darwin*  && `command -v boot2docker`  && `boot2docker status` == "running" ]]; then
   $(boot2docker shellinit) 
 fi
 
