@@ -44,8 +44,8 @@ if [[ $OSTYPE == darwin*  && `command -v boot2docker`  && `boot2docker status` =
   $(boot2docker shellinit) 
 fi
 
-if [[ $OSTYPE == darwin*  && `command -v docker-machine` ]]; then
-  eval "$(docker-machine env default)"
+if [[ $OSTYPE == darwin*  && `command -v docker-machine` && `docker-machine status docker` == "Running" ]]; then
+  eval "$(docker-machine env docker)"
 fi
 
 switch_ruby () {
