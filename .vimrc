@@ -416,7 +416,8 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 1
 let g:syntastic_loc_list_height=2
-
+let g:syntastic_python_flake8_args='--ignore=E501'
+let g:pymode_lint_ignore = 'E501'
 
 set nocompatible
 nnoremap <silent> <buffer> <leader>i :JavaImport<cr>
