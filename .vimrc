@@ -99,6 +99,7 @@ NeoBundle 'klen/python-mode'
 NeoBundle 'vim-scripts/django.vim'
 NeoBundle 'elixir-lang/vim-elixir'
 NeoBundle 'rust-lang/rust.vim'
+NeoBundle 'fisadev/vim-isort'
 " NeoBundle 'jmcantrell/vim-virtualenv'
 " Required:
 call neobundle#end()
