@@ -48,6 +48,10 @@ if [[ $OSTYPE == darwin*  && `command -v docker-machine` && `docker-machine stat
   eval "$(docker-machine env docker)"
 fi
 
+# Change term from light to dark
+alias light="source $BASE_16_PATH/base16-google.light.sh"
+alias dark="source $BASE_16_PATH/base16-google.dark.sh"
+
 switch_ruby () {
   if [ -z "$1" ]; then
     echo "Usage switch_ruby [version number]";
