@@ -1,10 +1,10 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer:
-"       Sean Callan Stolen by James Brink =)
-"       seancallan@gmail.com
+"       James Brink
+"       brink.james@gmail.com
 "
 " Version:
-"       2.0 - September 20th, 2014
+"       1.0 - April 20th, 2016
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 

@@ -1,4 +1,3 @@
-PS1="[\u@\h \W]\$ "
 PATH=~/local/bin:$PATH
 PATH=~/local/jruby/current/bin:$PATH
 PATH=~/local/opt/java/current/bin:$PATH
@@ -35,7 +34,8 @@ export PS1 PATH JAVA_HOME JDK_HOME ECLIPSE_HOME INTELLIJ_HOME GOROOT GOPATH EC2_
 
 
 # Execute Base 16 Shell
-BASE16_SHELL="$BASE_16_PATH/base16-google.dark.sh"
+BASE16_THEME="harmonic16"
+BASE16_SHELL="$BASE_16_PATH/base16-$BASE16_THEME.dark.sh"
 [[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
 
 # Custom functions and aliases
@@ -49,8 +49,12 @@ if [[ $OSTYPE == darwin*  && `command -v docker-machine` && `docker-machine stat
 fi
 
 # Change term from light to dark
-alias light="source $BASE_16_PATH/base16-google.light.sh"
-alias dark="source $BASE_16_PATH/base16-google.dark.sh"
+alias light="source $BASE_16_PATH/base16-$BASE16_THEME.light.sh"
+alias dark="source $BASE_16_PATH/base16-$BASE16_THEME.dark.sh"
+
+# Load random base16 theme
+base16_files=(~/.config/base16-shell/*)
+alias b16='source `printf "%s\n" "${base16_files[RANDOM % ${#base16_files[@]}]}"`'
 
 switch_ruby () {
   if [ -z "$1" ]; then
@@ -83,4 +87,5 @@ fi
 
 install_NeoBundle
 
+source ~/aliases.sh
 echo "Profile Loaded"
