@@ -100,6 +100,8 @@ NeoBundle 'vim-scripts/django.vim'
 NeoBundle 'elixir-lang/vim-elixir'
 NeoBundle 'rust-lang/rust.vim'
 NeoBundle 'fisadev/vim-isort'
+NeoBundle 'mattn/gist-vim', {'depends': 'mattn/webapi-vim'}
+NeoBundle 'JamshedVesuna/vim-markdown-preview'
 " NeoBundle 'jmcantrell/vim-virtualenv'
 " Required:
 call neobundle#end()
@@ -419,6 +421,17 @@ let g:syntastic_check_on_wq = 1
 let g:syntastic_loc_list_height=2
 let g:syntastic_python_flake8_args='--ignore=E501'
 let g:pymode_lint_ignore = 'E501'
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Vim Markdown Preview
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let vim_markdown_preview_toggle=2
+let vim_markdown_preview_hotkey='<C-m>'
+let vim_markdown_preview_browser='Google Chrome'
+"requires python grip - pip install grip
+let vim_markdown_preview_github=1
+
 
 set nocompatible
 nnoremap <silent> <buffer> <leader>i :JavaImport<cr>
