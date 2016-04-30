@@ -102,6 +102,7 @@ NeoBundle 'rust-lang/rust.vim'
 NeoBundle 'fisadev/vim-isort'
 NeoBundle 'mattn/gist-vim', {'depends': 'mattn/webapi-vim'}
 NeoBundle 'JamshedVesuna/vim-markdown-preview'
+NeoBundle 'ekalinin/Dockerfile.vim'
 " NeoBundle 'jmcantrell/vim-virtualenv'
 " Required:
 call neobundle#end()
