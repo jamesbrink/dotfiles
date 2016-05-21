@@ -41,19 +41,6 @@ set nobackup
 set nowb
 set noswapfile
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Colors and Fonts
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Enable syntax highlighting
-syntax enable
-
-set background=dark
-
-" Set utf8 as standard encoding and en_US as the standard language
-set encoding=utf8
-
-" Use Unix as the standard file type
-set ffs=unix,dos,mac
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugins
@@ -87,7 +74,6 @@ NeoBundle 'rking/ag.vim'
 NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'tpope/vim-rails'
 NeoBundle 'sjl/gundo.vim'
-NeoBundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 NeoBundle 'cakebaker/scss-syntax.vim'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'pangloss/vim-javascript'
@@ -103,7 +89,12 @@ NeoBundle 'fisadev/vim-isort'
 NeoBundle 'mattn/gist-vim', {'depends': 'mattn/webapi-vim'}
 NeoBundle 'JamshedVesuna/vim-markdown-preview'
 NeoBundle 'ekalinin/Dockerfile.vim'
-" NeoBundle 'jmcantrell/vim-virtualenv'
+NeoBundle 'vim-airline/vim-airline'
+NeoBundle 'vim-airline/vim-airline-themes'
+NeoBundle 'edkolev/tmuxline.vim'
+NeoBundle 'jmcantrell/vim-virtualenv'
+NeoBundle 'edkolev/tmuxline.vim'
+
 " Required:
 call neobundle#end()
 
@@ -276,7 +267,7 @@ set viminfo^=%
 " Status line
 """"""""""""""""""""""""""""""
 " Always show the status line
-"set laststatus=2
+set laststatus=2
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Editing mappings
@@ -429,14 +420,45 @@ let g:pymode_lint_ignore = 'E501'
 let vim_markdown_preview_toggle=2
 let vim_markdown_preview_hotkey='<C-m>'
 let vim_markdown_preview_browser='Google Chrome'
-"requires python grip - pip install grip
+" requires python grip - pip install grip
 let vim_markdown_preview_github=1
 
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Airline
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
+" let g:airline#extensions#tabline#left_sep = ' '
+" let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline_preset = 'full'
+let g:airline_theme='base16_eighties'
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" tmuxline
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" let g:tmuxline_powerline_separators = 0
+" let g:tmuxline_preset = 'full'
+" let g:airline#extensions#tmuxline#enabled = 0
+" let g:tmuxline_theme = 'base16_default'
 
 set nocompatible
 nnoremap <silent> <buffer> <leader>i :JavaImport<cr>
 nnoremap <silent> <buffer> <leader>d :JavaDocSearch -x declarations<cr>
 nnoremap <silent> <buffer> <cr> :JavaSearchContext<cr>
 let g:EclimCompletionMethod = 'omnifunc'
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Colors and Fonts
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set encoding=utf8
+syntax enable
+set background=dark
+colorscheme base16-eighties
+" Use Unix as the standard file type
+set ffs=unix,dos,mac
+
 
 set clipboard=unnamed

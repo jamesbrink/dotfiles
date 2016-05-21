@@ -1,3 +1,0 @@
-# This works just as the /etc/hosts file with the exception of applications with setuid
-# for exaple:
-# 127.0.0.1   example.com

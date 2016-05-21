@@ -1,0 +1,57 @@
+# ~/.tmuxinator/godaddy.yml
+
+name: godaddy
+root: ~/
+
+# Optional tmux socket
+# socket_name: foo
+
+# Runs before everything. Use it to start daemons etc.
+# pre: sudo /etc/rc.d/mysqld start
+
+# Runs in each window and pane before window/pane specific commands. Useful for setting up interpreter versions.
+# pre_window: rbenv shell 2.0.0-p247
+
+# Pass command line options to tmux. Useful for specifying a different tmux.conf.
+# tmux_options: -f ~/.tmux.mac.conf
+
+# Change the command to call tmux.  This can be used by derivatives/wrappers like byobu.
+# tmux_command: byobu
+
+# Specifies (by name or index) which window will be selected on project startup. If not set, the first window is used.
+startup_window: kvm
+
+# Controls whether the tmux session should be attached to automatically. Defaults to true.
+# attach: false
+
+# Runs after everything. Use it to attach to tmux with custom options etc.
+# post: tmux -CC attach -t godaddy
+
+windows: 
+  - main: 
+  - notes: vim ~/notes.txt
+  - fabric: 
+      layout: main-vertical
+      panes:
+        - logs:
+          - tail -f ~/fabric.log | grep -v paramiko
+        - mitigation:
+          - alias p22="skynet --only-cleared --server-types="cPanel" --output-csv --only-mine"
+          - alias p65222="skynet --only-cleared --server-types=\"Grid Node,Classic\" --output-csv --only-mine"
+          - while :; do if [ -n "`p22`" ]; then myfab -H `p22` --port=22 --timeout=300 cpanel.block_abusive_ips:live_run=True;fi;if [ -n "`p65222`" ]; then myfab -H `p65222` --port=65222 --timeout=300 classic.block_abusive_ips:live_run=True;fi;sleep 60;done
+        - cpanel:
+          - while :; do if [ -n "`cpanel`" ]; then myfab -H `cpanel` --port=22 cpanel.clear_resources; fi;sleep 5;done
+        - classic:
+          - while :; do if [ -n "`classic`" ]; then myfab -H `classic` --port=65222 --timeout=300 classic.clear_resources;fi;sleep 5;done
+        - grid:
+          - while :; do if [ -n "`grid`" ]; then myfab -H `grid` --port=65222 grid.clear_resources;fi;sleep 5;done
+  - kvm:
+      layout: main-vertical
+      root: ~/projects/kvm/
+      panes:
+        - vim
+        - nosy -c nosy.cfg
+        - kvm:
+          - export PATH=/Users/jbrink/projects/kvm/scripts:$PATH
+          - export PYTHONPATH=/Users/jbrink/projects/kvm/
+          - while :; do kvm; sleep 10;done
