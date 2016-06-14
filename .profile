@@ -1,6 +1,8 @@
 PATH=~/local/bin:$PATH
 PATH=~/local/jruby/current/bin:$PATH
 PATH=~/local/opt/java/current/bin:$PATH
+PYTHON_BASE=~/local/python
+PYTHON_HOME=~/local/python/current
 RUBY_BASE=~/local/ruby
 RUBY_HOME=~/local/ruby/current
 GOROOT=~/local/go
@@ -15,6 +17,9 @@ PYTHONSTARTUP=~/.pythonrc
 # tmxinator settings
 export EDITOR='vim'
 export DISABLE_AUTO_TITLE=true
+
+PATH="$BASE_16_PATH:$GOROOT/bin:$INTELLIJ_HOME/bin:$ECLIPSE_HOME:$RUBY_HOME/bin:$EC2_HOME/bin:$PYTHON_HOME/bin:$PATH"
+export PS1 PATH JAVA_HOME JDK_HOME ECLIPSE_HOME INTELLIJ_HOME GOROOT GOPATH EC2_HOME RUBY_BASE RUBY_HOME CLICOLOR LSCOLORS PYTHONSTARTUP PYTHON_BASE PYTHON_HOME
 
 # Create config directory for dotfiles if needed
 if [[ ! -d ~/.config/dotfiles ]]; then
@@ -38,24 +43,24 @@ if [[ $OSTYPE == darwin* ]]; then
   # the LSCOLORS attempts to match default Linux bash shell
   CLICOLOR=1
   LSCOLORS=ExFxCxDxBxegedabagacad
+  
+  # Install reattach-to-user-namespace if needed
+  if [[ ! `command -v reattach-to-user-namespace` ]]; then
+    echo "Installing tmux-MacOSX-pasteboard"
+    brew install reattach-to-user-namespace
+  fi
+
+  # Install silver searcher if needed
+  if [[ ! `command -v ag` ]]; then
+    echo "Installing the silver searcher"
+    brew install ag
+  fi
 fi
 
 # Install Base-16 Shell themes if needed
 if [ ! -d "$BASE_16_PATH" ]; then
   echo "Installing Base 16 Shell"
   git clone https://github.com/chriskempson/base16-shell.git $BASE_16_PATH
-fi
-
-# Install reattach-to-user-namespace if needed
-if [[ ! `command -v reattach-to-user-namespace` ]]; then
-  echo "Installing tmux-MacOSX-pasteboard"
-  brew install reattach-to-user-namespace
-fi
-
-# Install silver searcher if needed
-if [[ ! `command -v ag` ]]; then
-  echo "Installing the silver searcher"
-  brew install ag
 fi
 
 # Install Isort if needed
@@ -82,10 +87,6 @@ if [[ ! -d ~/.oh-my-zsh ]]; then
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 fi
 
-PATH="$BASE_16_PATH:$GOROOT/bin:$INTELLIJ_HOME/bin:$ECLIPSE_HOME:$RUBY_HOME/bin:$EC2_HOME/bin:$PATH"
-export PS1 PATH JAVA_HOME JDK_HOME ECLIPSE_HOME INTELLIJ_HOME GOROOT GOPATH EC2_HOME RUBY_BASE RUBY_HOME CLICOLOR LSCOLORS PYTHONSTARTUP
-
-
 # Execute Base 16 Shell
 BASE16_THEME="eighties"
 BASE16_SHELL="$BASE_16_PATH/base16-$BASE16_THEME.dark.sh"
@@ -100,9 +101,6 @@ fi
 # Change term from light to dark
 alias light="source $BASE_16_PATH/base16-$BASE16_THEME.light.sh"
 alias dark="source $BASE_16_PATH/base16-$BASE16_THEME.dark.sh"
-
-# Load random base16 theme
-base16_files=(~/.config/base16-shell/*)
 
 switch_ruby () {
   if [ -z "$1" ]; then
