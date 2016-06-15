@@ -5,3 +5,6 @@
 	email = brink.james@gmail.com
 [core]
 	autocrlf = input
+	editor = vim
+[github]
+	user = jamesbrink
