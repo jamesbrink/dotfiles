@@ -1,10 +1,13 @@
 PATH=~/local/bin:$PATH
 PATH=~/local/jruby/current/bin:$PATH
 PATH=~/local/opt/java/current/bin:$PATH
+LD_LIBRARY_PATH=~/local/lib
 PYTHON_BASE=~/local/python
 PYTHON_HOME=~/local/python/current
+LD_LIBRARY_PATH=~/local/python/current/lib:$LD_LIBRARY_PATH
 RUBY_BASE=~/local/ruby
 RUBY_HOME=~/local/ruby/current
+LD_LIBRARY_PATH=~$RUBY_HOME/lib:$LD_LIBRARY_PATH
 GOROOT=~/local/go
 GOPATH=~/projects/go-projects
 INTELLIJ_HOME=~/local/opt/IntelliJ14
@@ -18,8 +21,11 @@ PYTHONSTARTUP=~/.pythonrc
 export EDITOR='vim'
 export DISABLE_AUTO_TITLE=true
 
+# TODO something else with these
+export PATH=$PYTHON_BASE/2.6/bin:$PYTHON_BASE/3.5/bin:$PATH
+
 PATH="$BASE_16_PATH:$GOROOT/bin:$INTELLIJ_HOME/bin:$ECLIPSE_HOME:$RUBY_HOME/bin:$EC2_HOME/bin:$PYTHON_HOME/bin:$PATH"
-export PS1 PATH JAVA_HOME JDK_HOME ECLIPSE_HOME INTELLIJ_HOME GOROOT GOPATH EC2_HOME RUBY_BASE RUBY_HOME CLICOLOR LSCOLORS PYTHONSTARTUP PYTHON_BASE PYTHON_HOME
+export PS1 PATH JAVA_HOME JDK_HOME ECLIPSE_HOME INTELLIJ_HOME GOROOT GOPATH EC2_HOME RUBY_BASE RUBY_HOME CLICOLOR LSCOLORS PYTHONSTARTUP PYTHON_BASE PYTHON_HOME LD_LIBRARY_PATH
 
 # Create config directory for dotfiles if needed
 if [[ ! -d ~/.config/dotfiles ]]; then
