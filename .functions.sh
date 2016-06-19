@@ -78,9 +78,9 @@ function install_powerline_fonts(){
 
 # Install Base-16 Shell themes
 function install_base16(){
-  if [ ! -d "$BASE_16_PATH" ]; then
+  if [ ! -d "$BASE16_PATH" ]; then
     echo "Installing Base 16 Shell"
-    git clone https://github.com/chriskempson/base16-shell.git $BASE_16_PATH
+    git clone https://github.com/chriskempson/base16-shell.git $BASE16_PATH
   fi
 }
 

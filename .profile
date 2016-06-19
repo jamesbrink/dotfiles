@@ -25,7 +25,7 @@ JAVA_HOME=$JAVA_BASE/current
 JAVA_BIN=$JAVA_HOME/bin
 JDK_HOME=$JAVA_BASE/current
 
-BASE_16_PATH=$HOME/.config/base16-shell
+BASE16_PATH=$HOME/.config/base16-shell
 BASE16_THEME="eighties"
 BASE16_STYLE="dark"
 
@@ -39,7 +39,7 @@ GO_VERSION="1.6.2"
 EDITOR='vim'
 DISABLE_AUTO_TITLE=true
 
-PATH=$LOCAL_BIN:$PYTHON_BIN:$RUBY_BIN:$JAVA_BIN:$BASE_16_PATH:$GO_BIN:$PATH
+PATH=$LOCAL_BIN:$PYTHON_BIN:$RUBY_BIN:$JAVA_BIN:$BASE16_PATH:$GO_BIN:$PATH
 LD_LIBRARY_PATH=$LOCAL_LIB:$PYTHON_LIB:$RUBY_LIB
 
 export PATH LD_LIBRARY_PATH
@@ -59,7 +59,7 @@ fi
 # If needed install base16 shell
 install_base16
 # Execute Base 16 Shell
-BASE16_SHELL="$BASE_16_PATH/base16-$BASE16_THEME.$BASE_16_STYLE.sh"
+BASE16_SHELL="$BASE16_PATH/base16-$BASE16_THEME.$BASE16_STYLE.sh"
 [[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
 
 # Install Python if needed.
@@ -90,8 +90,8 @@ if [[ `command -v docker-machine` && `docker-machine status docker` == "Running"
 fi
 
 # Change term from light to dark
-alias light="source $BASE_16_PATH/base16-$BASE16_THEME.light.sh"
-alias dark="source $BASE_16_PATH/base16-$BASE16_THEME.dark.sh"
+alias light="source $BASE16_PATH/base16-$BASE16_THEME.light.sh"
+alias dark="source $BASE16_PATH/base16-$BASE16_THEME.dark.sh"
 
 # Godaddy VPN
 function vpn(){
