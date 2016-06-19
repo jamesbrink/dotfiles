@@ -69,4 +69,6 @@ endif
 	cp .functions.sh $(HOME)
 
 oh_my_zsh:
+ifeq ("$(wildcard $(LOCAL_DIR)/oh-my-zsh)","")
 	(umask g-w,o-w && git clone https://github.com/robbyrussell/oh-my-zsh.git $(LOCAL_DIR)/oh-my-zsh)
+endif

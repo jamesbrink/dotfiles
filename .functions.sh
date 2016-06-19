@@ -117,9 +117,59 @@ function install_oh_my_zsh(){
   fi
 }
 
+# Install NeoBundle
 function install_NeoBundle(){
   if [ ! -e ~/.vim/bundle/neobundle.vim/bin/neoinstall ]; then
     echo "Installing NeoBundle"
     curl https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.sh | sh
+  fi
+}
+
+# Install Go, this will insall 1.4.3 first.
+function install_go(){
+  if [[ -z $1 ]]; then
+    echo "Usage install_go [version number]";
+  else
+    original_version=$version
+    version=$1
+    original_dir=$CWD
+    go_dst=$GO_BASE/$version
+    if [[ ! -d $LOCAL_SRC/go ]]; then
+      echo "Cloning go-lang git repo to ${LOCAL_SRC}/go"
+      git clone https://github.com/golang/go.git $LOCAL_SRC/go
+    fi
+    # Ensure 1.4 is installed. 1.4 is 
+    # required to build 1.5 and greater.
+    if [[ $version != "1.4.3" ]]; then
+      if [[ ! -d $GO_BASE/1.4.3 ]]; then
+        echo "GO lang 1.5 and above requires 1.4 to build. Installing that first."
+        install_go 1.4.3
+        version=$original_version
+        go_dst=$GO_BASE/$version
+      fi
+    fi
+    # Checkout version and build
+    cd $LOCAL_SRC/go
+    echo "Cleaning go-lang git repo"
+    git reset HEAD --hard
+    git clean -xfd
+    git checkout "go${version}"
+    cd src
+    if [[ $version != "1.4.3" ]]; then
+      GOROOT_BOOTSTRAP=$GO_BASE/1.4.3 ./all.bash
+    else
+      ./all.bash
+    fi
+    # Install files into $LOCAL_DIR/go
+    mkdir -p $go_dst
+    cp -r $LOCAL_SRC/go/ $go_dst
+    # Remove git repo from destination
+    rm -rf $go_dst/.git
+    if [[ -e $GO_ACTIVE ]]; then
+      rm $GO_ACTIVE
+    fi
+    ln -s $go_dst $GO_ACTIVE
+    hash -r
+    cd $original_dir
   fi
 }

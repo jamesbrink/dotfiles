@@ -29,11 +29,17 @@ BASE_16_PATH=$HOME/.config/base16-shell
 BASE16_THEME="eighties"
 BASE16_STYLE="dark"
 
+GO_BASE=$LOCAL_DIR/go
+GO_ACTIVE=$GO_BASE/current
+GOROOT=$GO_ACTIVE
+GO_BIN=$GO_ACTIVE/bin
+GO_VERSION="1.6.2"
+
 # tmxinator settings
 EDITOR='vim'
 DISABLE_AUTO_TITLE=true
 
-PATH=$LOCAL_BIN:$PYTHON_BIN:$RUBY_BIN:$JAVA_BIN:$BASE_16_PATH:$PATH
+PATH=$LOCAL_BIN:$PYTHON_BIN:$RUBY_BIN:$JAVA_BIN:$BASE_16_PATH:$GO_BIN:$PATH
 LD_LIBRARY_PATH=$LOCAL_LIB:$PYTHON_LIB:$RUBY_LIB
 
 export PATH LD_LIBRARY_PATH
@@ -60,6 +66,10 @@ if [[ ! -e $RUBY_BIN/ruby ]]; then
   install_ruby $RUBY_VERSION
 fi
 
+# Install Go if needed.
+if [[ ! -e $GO_BIN/go ]]; then
+  install_go $GO_VERSION
+fi
 # Install these if needed.
 install_base16
 install_powerline_fonts
