@@ -90,7 +90,7 @@ function install_misc_tools(){
     echo "Installing Isort"
     pip install isort
   fi
-  
+
   # Install grip if needed
   if [[ ! `command -v grip` ]]; then
     echo "Installing grip"
@@ -130,19 +130,19 @@ function install_go(){
   if [[ -z $1 ]]; then
     echo "Usage install_go [version number]";
   else
-    mkdir -p $GO_BASE
     original_version=$version
     version=$1
     original_dir=$CWD
     go_dst=$GO_BASE/$version
+    mkdir -p $GO_BASE
     if [[ ! -d $LOCAL_SRC/go ]]; then
       echo "Cloning go-lang git repo to ${LOCAL_SRC}/go"
       git clone https://github.com/golang/go.git $LOCAL_SRC/go
     fi
-    # Ensure 1.4 is installed. 1.4 is 
+    # Ensure 1.4 is installed. 1.4 is
     # required to build 1.5 and greater.
     if [[ $version != "1.4.3" ]]; then
-      if [[ ! -d $GO_BASE/1.4.3 ]]; then
+      if [[ ! -d $GO_BASE/1.4.3  && ! `command -v go` ]]; then
         echo "GO lang 1.5 and above requires 1.4 to build. Installing that first."
         install_go 1.4.3
         version=$original_version
@@ -155,12 +155,13 @@ function install_go(){
     git reset HEAD --hard
     git clean -xfd
     git checkout "go${version}"
-    # Install files into $GO_BASE
-    cp -r $LOCAL_SRC/go $go_dst
+    # Install files into $LOCAL_DIR/go
+    cp -r $LOCAL_SRC/go/ $go_dst
     # Remove git repo from destination
     rm -rf $go_dst/.git
     # Run the compile
-    cd $go_dst/src
+    cd $go_dst/src/
+    export CC=clang
     if [[ $version != "1.4.3" ]]; then
       GOROOT_BOOTSTRAP=$GO_BASE/1.4.3 ./all.bash
     else
@@ -174,3 +175,4 @@ function install_go(){
     cd $original_dir
   fi
 }
+
