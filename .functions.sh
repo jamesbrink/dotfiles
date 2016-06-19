@@ -130,6 +130,7 @@ function install_go(){
   if [[ -z $1 ]]; then
     echo "Usage install_go [version number]";
   else
+    mkdir -p $GO_BASE
     original_version=$version
     version=$1
     original_dir=$CWD
@@ -154,17 +155,17 @@ function install_go(){
     git reset HEAD --hard
     git clean -xfd
     git checkout "go${version}"
-    cd src
+    # Install files into $GO_BASE
+    cp -r $LOCAL_SRC/go $go_dst
+    # Remove git repo from destination
+    rm -rf $go_dst/.git
+    # Run the compile
+    cd $go_dst/src
     if [[ $version != "1.4.3" ]]; then
       GOROOT_BOOTSTRAP=$GO_BASE/1.4.3 ./all.bash
     else
       ./all.bash
     fi
-    # Install files into $LOCAL_DIR/go
-    mkdir -p $go_dst
-    cp -r $LOCAL_SRC/go/ $go_dst
-    # Remove git repo from destination
-    rm -rf $go_dst/.git
     if [[ -e $GO_ACTIVE ]]; then
       rm $GO_ACTIVE
     fi

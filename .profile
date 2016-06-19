@@ -56,6 +56,12 @@ if [[ ! -d ~/.config/dotfiles ]]; then
   mkdir -p ~/.config/dotfiles
 fi
 
+# If needed install base16 shell
+install_base16
+# Execute Base 16 Shell
+BASE16_SHELL="$BASE_16_PATH/base16-$BASE16_THEME.$BASE_16_STYLE.sh"
+[[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
+
 # Install Python if needed.
 if [[ ! -e $PYTHON_BIN/python ]]; then
   install_python $PYTHON_VERSION
@@ -71,7 +77,6 @@ if [[ ! -e $GO_BIN/go ]]; then
   install_go $GO_VERSION
 fi
 # Install these if needed.
-install_base16
 install_powerline_fonts
 install_misc_tools
 install_tmuxinator
@@ -132,9 +137,6 @@ else
   cp ~/.tmux_linux.conf ~/.tmux.conf
 fi
 
-# Execute Base 16 Shell
-BASE16_SHELL="$BASE_16_PATH/base16-$BASE16_THEME.$BASE_16_STYLE.sh"
-[[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
 
 source $LOCAL_BIN/tmuxinator.zsh
 
