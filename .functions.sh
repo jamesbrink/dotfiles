@@ -188,7 +188,7 @@ function base16(){
     echo "Usage change_theme [theme_name]";
     echo "Installed Themes:"
     echo "-----------------"
-    find $BASE16_PATH  -type f -name "*dark*" | sed 's|^/.*base16-shell/\base16-\([a-zA-Z0-9]*\)\.dark\.sh|\1|g'
+    find $BASE16_PATH  -type f -name "*dark*" | sed 's|^/.*base16-shell/base16-\([a-zA-Z0-9]*\)\.dark\.sh|\1|g'
   else
     theme=$1
     theme_file=$BASE16_PATH/base16-$theme.$BASE16_STYLE.sh
