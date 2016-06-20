@@ -15,7 +15,14 @@ function install_python () {
     cd $LOCAL_SRC
     tar -xf Python-$version.tar.xz
     cd Python-$version
+    # Ensure we link to openssl on darwin
+    if [[ $OSTYPE == darwin* ]]; then
+      brew install openssl
+      export CPPFLAGS=-I/usr/local/opt/openssl/include
+      export LDFLAGS=-L/usr/local/opt/openssl/lib
+    fi
     CXX=gcc ./configure --prefix=$python_dst --enable-shared --enable-unicode=ucs4
+
     make
     make install
     $python_dst/bin/python -m ensurepip

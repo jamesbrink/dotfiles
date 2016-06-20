@@ -64,7 +64,14 @@ BASE16_SHELL="$BASE16_PATH/base16-$BASE16_THEME.$BASE16_STYLE.sh"
 
 # Install Python if needed.
 if [[ ! -e $PYTHON_BIN/python ]]; then
-  install_python $PYTHON_VERSION
+  if [[ $OSTYPE == darwin* && `command -v python` != "/usr/local/bin/python" ]]; then
+    # On OSX use homebrew until I fix build
+    # on OSX
+    echo "Installing Python from homebrew."
+    brew install python
+  elif [[ $OSTYPE != darwin* ]]; then
+    install_python $PYTHON_VERSION
+  fi
 fi
 
 # Install Ruby if needed.
