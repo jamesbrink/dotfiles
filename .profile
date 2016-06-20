@@ -97,8 +97,8 @@ if [[ `command -v docker-machine` && `docker-machine status docker` == "Running"
 fi
 
 # Change term from light to dark
-alias light="source $BASE16_PATH/base16-$BASE16_THEME.light.sh"
-alias dark="source $BASE16_PATH/base16-$BASE16_THEME.dark.sh"
+alias light="base16 light"
+alias dark="base16 dark"
 
 # Godaddy VPN
 function vpn(){

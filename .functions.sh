@@ -183,3 +183,26 @@ function install_go(){
   fi
 }
 
+function base16(){
+  if [[ -z $1 ]]; then
+    echo "Usage change_theme [theme_name]";
+    echo "Installed Themes:"
+    echo "-----------------"
+    find $BASE16_PATH  -type f -name "*dark*" | sed 's|^/.*base16-shell/\base16-\([a-zA-Z0-9]*\)\.dark\.sh|\1|g'
+  else
+    theme=$1
+    theme_file=$BASE16_PATH/base16-$theme.$BASE16_STYLE.sh
+    if [[ -e $theme_file ]]; then
+      export BASE16_THEME=$theme
+      echo "Changing to theme ${BASE16_THEME} ${BASE16_STYLE}."
+      source $BASE16_PATH/base16-$BASE16_THEME.$BASE16_STYLE.sh
+    elif [[ $theme == "light" || $theme == "dark" ]]; then
+      export BASE16_STYLE=$theme
+      echo "Changing to theme ${BASE16_THEME} ${BASE16_STYLE}."
+      source $BASE16_PATH/base16-$BASE16_THEME.$BASE16_STYLE.sh
+    else
+      echo "Theme not found ${theme}."
+      return 128
+    fi
+  fi
+}
