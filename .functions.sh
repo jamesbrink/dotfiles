@@ -196,10 +196,15 @@ function base16(){
       export BASE16_THEME=$theme
       echo "Changing to theme ${BASE16_THEME} ${BASE16_STYLE}."
       source $BASE16_PATH/base16-$BASE16_THEME.$BASE16_STYLE.sh
+      sed -i -e 's/^\(BASE16_THEME=\).*/\1"'$BASE16_THEME'"/g' $HOME/.profile
+      sed -i -e "s/\(^let g:airline_theme=\)'.*'/\1\'base16_"$BASE16_THEME"'/g" $HOME/.vimrc
+      sed -i -e "s/\(colorscheme base16-\)eighties/\1"$BASE16_THEME"/g" $HOME/.vimrc
     elif [[ $theme == "light" || $theme == "dark" ]]; then
       export BASE16_STYLE=$theme
       echo "Changing to theme ${BASE16_THEME} ${BASE16_STYLE}."
       source $BASE16_PATH/base16-$BASE16_THEME.$BASE16_STYLE.sh
+      sed -i -e 's/^\(BASE16_STYLE=\).*/\1"'$BASE16_STYLE'"/g' $HOME/.profile
+      sed -i -e 's/\(set background=\).*/\1'$BASE16_STYLE'/g' $HOME/.vimrc
     else
       echo "Theme not found ${theme}."
       return 128
