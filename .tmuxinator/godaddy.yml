@@ -19,7 +19,7 @@ root: ~/
 # tmux_command: byobu
 
 # Specifies (by name or index) which window will be selected on project startup. If not set, the first window is used.
-startup_window: kvm
+startup_window: sro_lib
 
 # Controls whether the tmux session should be attached to automatically. Defaults to true.
 # attach: false
@@ -55,3 +55,21 @@ windows:
           - export PATH=/Users/jbrink/projects/kvm/scripts:$PATH
           - export PYTHONPATH=/Users/jbrink/projects/kvm/
           - while :; do kvm; sleep 10;done
+  - sro_lib:
+      layout: main-vertical
+      root: ~/projects/sro_lib/
+      panes:
+        - vim:
+          - source venv/bin/activate
+          - export PATH=`pwd`/examples:$PATH
+          - export PYTHONPATH=`pwd`
+          - vim
+        - nosy:
+          - source venv/bin/activate
+          - export PATH=`pwd`/examples:$PATH
+          - export PYTHONPATH=`pwd`
+          - nosy -c nosy.cfg
+        - sro_lib:
+          - source venv/bin/activate  
+          - export PATH=`pwd`/examples:$PATH
+          - export PYTHONPATH=`pwd`
