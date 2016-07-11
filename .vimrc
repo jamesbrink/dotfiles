@@ -97,7 +97,7 @@ NeoBundle 'edkolev/tmuxline.vim'
 NeoBundle 'tfnico/vim-gradle'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'Xuyuanp/nerdtree-git-plugin'
-
+NeoBundle 'leafgarland/typescript-vim'
 " Required:
 call neobundle#end()
 
@@ -424,7 +424,8 @@ let vim_markdown_preview_toggle=2
 let vim_markdown_preview_hotkey='<C-m>'
 let vim_markdown_preview_browser='Google Chrome'
 " requires python grip - pip install grip
-let vim_markdown_preview_github=1
+" this plugin is broken ATM?
+let vim_markdown_preview_github=0
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -458,7 +459,7 @@ let g:airline_powerline_fonts = 1
 " let g:airline#extensions#tabline#left_sep = ' '
 " let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline_preset = 'full'
-let g:airline_theme='base16_eighties'
+let g:airline_theme='base16_bespin'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -482,7 +483,7 @@ let g:EclimCompletionMethod = 'omnifunc'
 set encoding=utf8
 syntax enable
 set background=dark
-colorscheme base16-eighties
+colorscheme base16-bespin
 " Use Unix as the standard file type
 set ffs=unix,dos,mac
 hi Normal ctermbg=none
