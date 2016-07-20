@@ -488,4 +488,6 @@ colorscheme base16-bespin
 set ffs=unix,dos,mac
 hi Normal ctermbg=none
 
+" Enable mouse
+set mouse=a
 set clipboard=unnamed
