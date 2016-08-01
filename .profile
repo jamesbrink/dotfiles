@@ -92,7 +92,7 @@ install_oh_my_zsh
 
 # If docker-machine is setup, make sure we
 # setup our enviroment for that.
-if [[ `command -v docker-machine` && `docker-machine status docker` == "Running" ]]; then
+if [[ `command -v docker-machine` && `docker-machine status docker 2> /dev/null` == "Running" ]]; then
   eval "$(docker-machine env docker)"
 fi
 
@@ -146,5 +146,12 @@ fi
 
 
 source $LOCAL_BIN/tmuxinator.zsh
+
+# Enable support for tag
+# https://github.com/aykamko/tag
+if (( $+commands[tag] )); then
+  tag() { command tag "$@"; source ${TAG_ALIAS_FILE:-/tmp/tag_aliases} 2>/dev/null }
+  alias ag=tag
+fi
 
 echo "Profile Loaded"
