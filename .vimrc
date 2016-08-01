@@ -459,7 +459,7 @@ let g:airline_powerline_fonts = 1
 " let g:airline#extensions#tabline#left_sep = ' '
 " let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline_preset = 'full'
-let g:airline_theme='base16_bespin'
+let g:airline_theme='base16_eighties'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -483,7 +483,7 @@ let g:EclimCompletionMethod = 'omnifunc'
 set encoding=utf8
 syntax enable
 set background=dark
-colorscheme base16-bespin
+colorscheme base16-eighties
 " Use Unix as the standard file type
 set ffs=unix,dos,mac
 hi Normal ctermbg=none
