@@ -98,6 +98,9 @@ NeoBundle 'tfnico/vim-gradle'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'Xuyuanp/nerdtree-git-plugin'
 NeoBundle 'leafgarland/typescript-vim'
+NeoBundle 'jamessan/vim-gnupg'
+NeoBundle 'digitaltoad/vim-pug'
+
 " Required:
 call neobundle#end()
 
@@ -415,7 +418,7 @@ let g:syntastic_check_on_wq = 1
 let g:syntastic_loc_list_height=2
 let g:syntastic_python_flake8_args='--ignore=E501'
 let g:pymode_lint_ignore = 'E501'
-
+let g:syntastic_javascript_checkers = ['jshint']
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vim Markdown Preview
