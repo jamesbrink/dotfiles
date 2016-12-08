@@ -57,7 +57,7 @@ function install_ruby(){
     cd $LOCAL_SRC/ruby
     git checkout "v`echo $version | sed 's/\./_/g'`"
     autoconf
-    ./configure --prefix=$ruby_dst
+    ./configure --prefix=$ruby_dst --with-openssl-dir=/usr/local/opt/openssl/ 
     make
     make install
     # If there is no active/default ruby install
