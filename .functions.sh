@@ -88,6 +88,10 @@ function install_base16(){
   if [ ! -d "$BASE16_PATH" ]; then
     echo "Installing Base 16 Shell"
     git clone https://github.com/chriskempson/base16-shell.git $BASE16_PATH
+    # TODO update script to work with newer versions.
+    cd $BASE16_PATH
+    git checkout 502c805fe87acf68d5c45f72d680db5743d1b223
+    cd -
   fi
 }
 
