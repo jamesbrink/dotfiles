@@ -83,6 +83,7 @@ fi
 if [[ ! -e $GO_BIN/go ]]; then
   install_go $GO_VERSION
 fi
+
 # Install these if needed.
 install_powerline_fonts
 install_misc_tools
@@ -127,7 +128,12 @@ if [[ $OSTYPE == darwin* ]]; then
   export CLICOLOR=1
   export LSCOLORS=ExFxCxDxBxegedabagacad
   cp $HOME/.tmux_osx.conf $HOME/.tmux.conf
-  
+
+  # Install homebrew if needed
+  if [[ ! `command -v brew` ]]; then
+    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  fi
+
   # Install reattach-to-user-namespace if needed
   if [[ ! `command -v reattach-to-user-namespace` ]]; then
     echo "Installing tmux-MacOSX-pasteboard"
@@ -138,6 +144,13 @@ if [[ $OSTYPE == darwin* ]]; then
   if [[ ! `command -v ag` ]]; then
     echo "Installing the silver searcher"
     brew install ag
+  fi
+
+  # Install Tag-ag if needed.
+  if [[ ! `command -v tag` ]]; then
+    echo "Installing Tag"
+    brew tap aykamko/tag-ag
+    brew install tag-ag
   fi
 else
   # On linux/unix use this conf for tmux
