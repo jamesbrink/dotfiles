@@ -428,7 +428,7 @@ let vim_markdown_preview_hotkey='<C-m>'
 let vim_markdown_preview_browser='Google Chrome'
 " requires python grip - pip install grip
 " this plugin is broken ATM?
-let vim_markdown_preview_github=0
+let vim_markdown_preview_github=1
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
