@@ -141,10 +141,9 @@ function install_go(){
   if [[ -z $1 ]]; then
     echo "Usage install_go [version number]";
   else
-    original_version=$version
-    version=$1
-    original_dir=$CWD
-    go_dst=$GO_BASE/$version
+    local version=$1
+    local original_dir=$CWD
+    local go_dst=$GO_BASE/$version
     mkdir -p $GO_BASE
     if [[ ! -d $LOCAL_SRC/go ]]; then
       echo "Cloning go-lang git repo to ${LOCAL_SRC}/go"
@@ -156,8 +155,6 @@ function install_go(){
       if [[ ! -d $GO_BASE/1.4.3  && ! `command -v go` ]]; then
         echo "GO lang 1.5 and above requires 1.4 to build. Installing that first."
         install_go 1.4.3
-        version=$original_version
-        go_dst=$GO_BASE/$version
       fi
     fi
     # Checkout version and build
