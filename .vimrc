@@ -100,6 +100,8 @@ NeoBundle 'Xuyuanp/nerdtree-git-plugin'
 NeoBundle 'leafgarland/typescript-vim'
 NeoBundle 'jamessan/vim-gnupg'
 NeoBundle 'digitaltoad/vim-pug'
+NeoBundle 'chase/vim-ansible-yaml'
+
 
 " Required:
 call neobundle#end()
