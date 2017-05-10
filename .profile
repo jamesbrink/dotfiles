@@ -75,14 +75,14 @@ if [[ ! -e $PYTHON_BIN/python ]]; then
 fi
 
 # Install Ruby if needed.
-if [[ ! -e $RUBY_BIN/ruby ]]; then
-  install_ruby $RUBY_VERSION
-fi
+# if [[ ! -e $RUBY_BIN/ruby ]]; then
+#   install_ruby $RUBY_VERSION
+# fi
 
 # Install Go if needed.
-if [[ ! -e $GO_BIN/go ]]; then
-  install_go $GO_VERSION
-fi
+# if [[ ! -e $GO_BIN/go ]]; then
+#   install_go $GO_VERSION
+# fi
 
 # Install these if needed.
 install_powerline_fonts
