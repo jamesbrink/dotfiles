@@ -101,7 +101,7 @@ NeoBundle 'leafgarland/typescript-vim'
 NeoBundle 'jamessan/vim-gnupg'
 NeoBundle 'digitaltoad/vim-pug'
 NeoBundle 'chase/vim-ansible-yaml'
-
+NeoBundle 'mhinz/vim-hugefile'
 
 " Required:
 call neobundle#end()
@@ -302,6 +302,7 @@ autocmd BufWrite *.rb :call DeleteTrailingWS()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Spell checking
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set spelllang=en_us
 " Pressing ,ss will toggle and untoggle spell checking
 map <leader>ss :setlocal spell!<cr>
 
@@ -478,7 +479,7 @@ let g:airline_theme='base16_eighties'
 set nocompatible
 nnoremap <silent> <buffer> <leader>i :JavaImport<cr>
 nnoremap <silent> <buffer> <leader>d :JavaDocSearch -x declarations<cr>
-nnoremap <silent> <buffer> <cr> :JavaSearchContext<cr>
+" nnoremap <silent> <buffer> <cr> :JavaSearchContext<cr>
 let g:EclimCompletionMethod = 'omnifunc'
 
 
