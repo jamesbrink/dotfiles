@@ -10,20 +10,26 @@ PYTHON_ACTIVE=$PYTHON_BASE/current
 PYTHON_BIN=$PYTHON_ACTIVE/bin
 PYTHON_LIB=$PYTHON_ACTIVE/lib
 PYTHONSTARTUP=$HOME/.pythonrc
-PYTHON_VERSION="2.7.13"
+PYTHON_VERSION="2.7.14"
 
 # Ruby variables
 RUBY_BASE=$LOCAL_DIR/ruby
 RUBY_ACTIVE=$RUBY_BASE/current
 RUBY_BIN=$RUBY_ACTIVE/bin
 RUBY_LIB=$RUBY_ACTIVE/lib
-RUBY_VERSION="2.4.1"
+RUBY_VERSION="2.4.3"
 
 # Java variables
 JAVA_BASE=$LOCAL_OPT/java
 JAVA_HOME=$JAVA_BASE/current
 JAVA_BIN=$JAVA_HOME/bin
 JDK_HOME=$JAVA_BASE/current
+
+# Node variables
+NODE_BASE=$LOCAL_DIR/node
+NODE_ACTIVE=$NODE_BASE/current
+NODE_BIN=$NODE_ACTIVE/bin
+NODE_VERSION=9.3.0
 
 BASE16_PATH=$HOME/.config/base16-shell
 BASE16_THEME="eighties"
@@ -33,13 +39,13 @@ GO_BASE=$LOCAL_DIR/go
 GO_ACTIVE=$GO_BASE/current
 GOROOT=$GO_ACTIVE
 GO_BIN=$GO_ACTIVE/bin
-GO_VERSION="1.6.2"
+GO_VERSION="1.9.2"
 
 # tmxinator settings
 EDITOR='vim'
 DISABLE_AUTO_TITLE=true
 
-PATH=$LOCAL_BIN:$PYTHON_BIN:$RUBY_BIN:$JAVA_BIN:$BASE16_PATH:$GO_BIN:$PATH
+PATH=$LOCAL_BIN:$PYTHON_BIN:$RUBY_BIN:$JAVA_BIN:$BASE16_PATH:$GO_BIN:$NODE_BIN:$PATH
 LD_LIBRARY_PATH=$LOCAL_LIB:$PYTHON_LIB:$RUBY_LIB
 
 export PATH LD_LIBRARY_PATH
@@ -75,9 +81,14 @@ if [[ ! -e $PYTHON_BIN/python ]]; then
 fi
 
 # Install Ruby if needed.
-# if [[ ! -e $RUBY_BIN/ruby ]]; then
-#   install_ruby $RUBY_VERSION
-# fi
+if [[ ! -e $RUBY_BIN/ruby ]]; then
+  install_ruby $RUBY_VERSION
+fi
+
+# Install Nodejs if needed.
+if [[ ! -e $NODE_BIN/node ]]; then
+  install_node $NODE_VERSION
+fi
 
 # Install Go if needed.
 # if [[ ! -e $GO_BIN/go ]]; then
@@ -162,9 +173,9 @@ source $LOCAL_BIN/tmuxinator.zsh
 
 # Enable support for tag
 # https://github.com/aykamko/tag
-if (( $+commands[tag] )); then
-  tag() { command tag "$@"; source ${TAG_ALIAS_FILE:-/tmp/tag_aliases} 2>/dev/null }
-  alias ag=tag
-fi
+# if (( $+commands[tag] )); then
+#   tag() { command tag "$@"; source ${TAG_ALIAS_FILE:-/tmp/tag_aliases} 2>/dev/null }
+#   alias ag=tag
+# fi
 
 echo "Profile Loaded"

@@ -70,6 +70,36 @@ function install_ruby(){
   fi
 }
 
+function install_node(){
+  if [[ -z $1 ]]; then
+    echo "Usage install_node [version number]";
+  else
+    original_dir=$CWD
+    version=$1
+    node_dst=$NODE_BASE/$version
+    echo "Installing Nodejs ${version} from source."
+    if [[ ! -d $LOCAL_SRC/node ]];then
+      echo "Nodejs source code not found locally, cloning from github."
+      git clone https://github.com/nodejs/node.git $LOCAL_SRC/node
+    else
+      cd $LOCAL_SRC/node
+      git reset HEAD --hard
+      git clean -f -d
+      git fetch --all
+    fi
+    cd $LOCAL_SRC/node
+    git checkout "v$version"
+    ./configure --prefix=$node_dst 
+    make -j `nproc`
+    make install
+    if [[ ! -e $NODE_BIN ]]; then
+      ln -s $node_dst $NODE_ACTIVE
+      hash -r
+    fi
+    cd $original_dir
+  fi
+}
+
 # Install powerline patched fonts
 function install_powerline_fonts(){
   if [[ ! -f ~/.config/dotfiles/powerline_fonts ]]; then
