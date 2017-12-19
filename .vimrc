@@ -87,7 +87,7 @@ NeoBundle 'elixir-lang/vim-elixir'
 NeoBundle 'rust-lang/rust.vim'
 NeoBundle 'fisadev/vim-isort'
 NeoBundle 'mattn/gist-vim', {'depends': 'mattn/webapi-vim'}
-NeoBundle 'JamshedVesuna/vim-markdown-preview'
+"NeoBundle 'JamshedVesuna/vim-markdown-preview'
 NeoBundle 'ekalinin/Dockerfile.vim'
 NeoBundle 'vim-airline/vim-airline'
 NeoBundle 'vim-airline/vim-airline-themes'
@@ -102,6 +102,8 @@ NeoBundle 'jamessan/vim-gnupg'
 NeoBundle 'digitaltoad/vim-pug'
 NeoBundle 'chase/vim-ansible-yaml'
 NeoBundle 'mhinz/vim-hugefile'
+NeoBundle 'pangloss/vim-javascript'
+NeoBundle 'mxw/vim-jsx'
 
 " Required:
 call neobundle#end()
