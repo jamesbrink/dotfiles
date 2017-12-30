@@ -88,6 +88,7 @@ NeoBundle 'rust-lang/rust.vim'
 NeoBundle 'fisadev/vim-isort'
 NeoBundle 'mattn/gist-vim', {'depends': 'mattn/webapi-vim'}
 "NeoBundle 'JamshedVesuna/vim-markdown-preview'
+NeoBundle 'suan/vim-instant-markdown'
 NeoBundle 'ekalinin/Dockerfile.vim'
 NeoBundle 'vim-airline/vim-airline'
 NeoBundle 'vim-airline/vim-airline-themes'
@@ -100,7 +101,8 @@ NeoBundle 'Xuyuanp/nerdtree-git-plugin'
 NeoBundle 'leafgarland/typescript-vim'
 NeoBundle 'jamessan/vim-gnupg'
 NeoBundle 'digitaltoad/vim-pug'
-NeoBundle 'chase/vim-ansible-yaml'
+"NeoBundle 'chase/vim-ansible-yaml'
+NeoBundle 'pearofducks/ansible-vim'
 NeoBundle 'mhinz/vim-hugefile'
 NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'mxw/vim-jsx'
@@ -467,7 +469,7 @@ let g:airline_powerline_fonts = 1
 " let g:airline#extensions#tabline#left_sep = ' '
 " let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline_preset = 'full'
-let g:airline_theme='base16_eighties'
+let g:airline_theme='base16_ocean'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -491,7 +493,7 @@ let g:EclimCompletionMethod = 'omnifunc'
 set encoding=utf8
 syntax enable
 set background=dark
-colorscheme base16-eighties
+colorscheme base16-ocean
 " Use Unix as the standard file type
 set ffs=unix,dos,mac
 hi Normal ctermbg=none
