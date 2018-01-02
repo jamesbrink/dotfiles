@@ -118,10 +118,6 @@ function install_base16(){
   if [ ! -d "$BASE16_PATH" ]; then
     echo "Installing Base 16 Shell"
     git clone https://github.com/chriskempson/base16-shell.git $BASE16_PATH
-    # TODO update script to work with newer versions.
-    cd $BASE16_PATH
-    git checkout 502c805fe87acf68d5c45f72d680db5743d1b223
-    cd -
   fi
 }
 
@@ -229,7 +225,18 @@ function base16(){
       source $BASE16_PATH/base16-$BASE16_THEME.$BASE16_STYLE.sh
       sed -i -e 's/^\(BASE16_THEME=\).*/\1"'$BASE16_THEME'"/g' $HOME/.profile
       sed -i -e "s/\(^let g:airline_theme=\)'.*'/\1\'base16_"$BASE16_THEME"'/g" $HOME/.vimrc
-      sed -i -e "s/\(^colorscheme base16-\).*/\1"$BASE16_THEME"/g" $HOME/.vimrc
+      case "$theme" in
+        default|grayscale|google)
+          sed -i -e "s/\(^colorscheme base16-\).*/\1"$BASE16_THEME"-"$BASE16_STYLE"/g" $HOME/.vimrc
+          ;;
+        londontube)
+          echo "$theme is not available in VIM, using default instead."
+          sed -i -e "s/\(^colorscheme base16-\).*/\1default-"$BASE16_STYLE"/g" $HOME/.vimrc
+          ;;
+        *)
+          sed -i -e "s/\(^colorscheme base16-\).*/\1"$BASE16_THEME"/g" $HOME/.vimrc
+          ;;
+      esac
     elif [[ $theme == "light" || $theme == "dark" ]]; then
       export BASE16_STYLE=$theme
       echo "Changing to theme ${BASE16_THEME} ${BASE16_STYLE}."

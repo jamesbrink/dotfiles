@@ -68,44 +68,40 @@ NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'godlygeek/tabular'
-NeoBundle 'kchmck/vim-coffee-script'
-NeoBundle 'airblade/vim-gitgutter'
-NeoBundle 'rking/ag.vim'
-NeoBundle 'vim-ruby/vim-ruby'
-NeoBundle 'tpope/vim-rails'
-NeoBundle 'sjl/gundo.vim'
-NeoBundle 'cakebaker/scss-syntax.vim'
+" NeoBundle 'kchmck/vim-coffee-script'
+" NeoBundle 'airblade/vim-gitgutter'
+" NeoBundle 'rking/ag.vim'
+" NeoBundle 'vim-ruby/vim-ruby'
+" NeoBundle 'tpope/vim-rails'
+" NeoBundle 'sjl/gundo.vim'
+" NeoBundle 'cakebaker/scss-syntax.vim'
 NeoBundle 'scrooloose/syntastic'
-NeoBundle 'pangloss/vim-javascript'
-NeoBundle 'fatih/vim-go'
-NeoBundle 'burnettk/vim-angular'
+" NeoBundle 'pangloss/vim-javascript'
+" NeoBundle 'fatih/vim-go'
+" NeoBundle 'burnettk/vim-angular'
 NeoBundle 'Valloric/YouCompleteMe'
 NeoBundle 'chriskempson/base16-vim'
-NeoBundle 'klen/python-mode'
-NeoBundle 'vim-scripts/django.vim'
-NeoBundle 'elixir-lang/vim-elixir'
-NeoBundle 'rust-lang/rust.vim'
-NeoBundle 'fisadev/vim-isort'
-NeoBundle 'mattn/gist-vim', {'depends': 'mattn/webapi-vim'}
-"NeoBundle 'JamshedVesuna/vim-markdown-preview'
+" NeoBundle 'klen/python-mode'
+" NeoBundle 'vim-scripts/django.vim'
+" NeoBundle 'elixir-lang/vim-elixir'
+" NeoBundle 'rust-lang/rust.vim'
+" NeoBundle 'fisadev/vim-isort'
+" NeoBundle 'mattn/gist-vim', {'depends': 'mattn/webapi-vim'}
 NeoBundle 'suan/vim-instant-markdown'
 NeoBundle 'ekalinin/Dockerfile.vim'
 NeoBundle 'vim-airline/vim-airline'
 NeoBundle 'vim-airline/vim-airline-themes'
+" NeoBundle 'jmcantrell/vim-virtualenv'
 NeoBundle 'edkolev/tmuxline.vim'
-NeoBundle 'jmcantrell/vim-virtualenv'
-NeoBundle 'edkolev/tmuxline.vim'
-NeoBundle 'tfnico/vim-gradle'
+" NeoBundle 'tfnico/vim-gradle'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'Xuyuanp/nerdtree-git-plugin'
-NeoBundle 'leafgarland/typescript-vim'
-NeoBundle 'jamessan/vim-gnupg'
-NeoBundle 'digitaltoad/vim-pug'
-"NeoBundle 'chase/vim-ansible-yaml'
+" NeoBundle 'leafgarland/typescript-vim'
+" NeoBundle 'jamessan/vim-gnupg'
+" NeoBundle 'digitaltoad/vim-pug'
 NeoBundle 'pearofducks/ansible-vim'
-NeoBundle 'mhinz/vim-hugefile'
-NeoBundle 'pangloss/vim-javascript'
-NeoBundle 'mxw/vim-jsx'
+" NeoBundle 'pangloss/vim-javascript'
+" NeoBundle 'mxw/vim-jsx'
 
 " Required:
 call neobundle#end()
@@ -400,7 +396,7 @@ augroup configgroup
   autocmd FileType ruby setlocal softtabstop=2
   autocmd FileType ruby setlocal commentstring=#\ %s
   autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
-  autocmd FileType python setlocal commentstring=#\ %s
+  autocmd FileType python setlocal commentstring=#\ %s tabstop=8 expandtab shiftwidth=4 softtabstop=4
   autocmd BufEnter *.cls setlocal filetype=java
   autocmd BufEnter *.zsh-theme setlocal filetype=zsh
   autocmd BufEnter Makefile setlocal noexpandtab
@@ -408,14 +404,16 @@ augroup configgroup
   autocmd BufEnter *.sh setlocal shiftwidth=2
   autocmd BufEnter *.sh setlocal softtabstop=2
   autocmd BufEnter *.json setlocal filetype=json
+  autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+  autocmd FileType ansible setlocal ts=2 sts=2 sw=2 expandtab
 augroup END
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Syntastic
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
 
 
 let g:syntastic_always_populate_loc_list = 1
@@ -426,16 +424,6 @@ let g:syntastic_loc_list_height=2
 let g:syntastic_python_flake8_args='--ignore=E501'
 let g:pymode_lint_ignore = 'E501'
 let g:syntastic_javascript_checkers = ['jshint']
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Vim Markdown Preview
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let vim_markdown_preview_toggle=2
-let vim_markdown_preview_hotkey='<C-m>'
-let vim_markdown_preview_browser='Google Chrome'
-" requires python grip - pip install grip
-" this plugin is broken ATM?
-let vim_markdown_preview_github=1
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -461,6 +449,7 @@ let g:NERDTreeIndicatorMapCustom = {
     \ "Unknown"   : "?"
     \ }
 
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Airline
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -469,16 +458,16 @@ let g:airline_powerline_fonts = 1
 " let g:airline#extensions#tabline#left_sep = ' '
 " let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline_preset = 'full'
-let g:airline_theme='base16_ocean'
+let g:airline_theme='base16_google'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " tmuxline
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" let g:tmuxline_powerline_separators = 0
-" let g:tmuxline_preset = 'full'
-" let g:airline#extensions#tmuxline#enabled = 0
-" let g:tmuxline_theme = 'base16_default'
+let g:tmuxline_powerline_separators = 0
+let g:tmuxline_preset = 'full'
+let g:airline#extensions#tmuxline#enabled = 0
+let g:tmuxline_theme = 'base16_default'
 
 set nocompatible
 nnoremap <silent> <buffer> <leader>i :JavaImport<cr>
@@ -493,10 +482,15 @@ let g:EclimCompletionMethod = 'omnifunc'
 set encoding=utf8
 syntax enable
 set background=dark
-colorscheme base16-ocean
+colorscheme base16-google-dark
 " Use Unix as the standard file type
 set ffs=unix,dos,mac
 hi Normal ctermbg=none
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ansible-vim options
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:ansible_unindent_after_newline = 0
 
 " Enable mouse
 set mouse=a
