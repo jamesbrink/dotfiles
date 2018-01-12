@@ -90,7 +90,7 @@ function install_node(){
     cd $LOCAL_SRC/node
     git checkout "v$version"
     ./configure --prefix=$node_dst 
-    make -j `nproc`
+    make 
     make install
     if [[ ! -e $NODE_BIN ]]; then
       ln -s $node_dst $NODE_ACTIVE
