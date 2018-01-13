@@ -125,13 +125,13 @@ function install_misc_tools(){
   # Install Isort if needed
   if [[ ! `command -v isort` ]]; then
     echo "Installing Isort"
-    pip install isort
+    pip2 install isort
   fi
 
   # Install grip if needed
   if [[ ! `command -v grip` ]]; then
     echo "Installing grip"
-    pip install grip
+    pip2 install grip
   fi
 }
 
