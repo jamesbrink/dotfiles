@@ -48,6 +48,7 @@ DISABLE_AUTO_TITLE=true
 PATH=$LOCAL_BIN:$PYTHON_BIN:$RUBY_BIN:$JAVA_BIN:$BASE16_PATH:$GO_BIN:$NODE_BIN:$PATH
 LD_LIBRARY_PATH=$LOCAL_LIB:$PYTHON_LIB:$RUBY_LIB
 
+
 export PATH LD_LIBRARY_PATH
 export JAVA_HOME JDK_HOME EDITOR DISABLE_AUTO_TITLE
 
@@ -70,7 +71,7 @@ BASE16_SHELL="$BASE16_PATH/base16-$BASE16_THEME.$BASE16_STYLE.sh"
 
 # Install Python if needed.
 if [[ ! -e $PYTHON_BIN/python ]]; then
-  if [[ $OSTYPE == darwin* && `command -v python` != "/usr/local/bin/python" ]]; then
+  if [[ $OSTYPE == darwin* && `command -v python2` != "/usr/local/bin/python2" ]]; then
     # On OSX use homebrew until I fix build
     # on OSX
     echo "Installing Python from homebrew."
@@ -163,6 +164,11 @@ if [[ $OSTYPE == darwin* ]]; then
     brew tap aykamko/tag-ag
     brew install tag-ag
   fi
+
+  # Override my settings and use osx JDK
+  export JAVA_HOME=$(/usr/libexec/java_home)
+  # setup android sdk path
+  export ANDROID_HOME=/Users/jbrink/Library/Android/sdk
 else
   # On linux/unix use this conf for tmux
   cp ~/.tmux_linux.conf ~/.tmux.conf
